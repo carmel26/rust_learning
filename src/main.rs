@@ -1,35 +1,24 @@
 fn main() {
-    println!("Working with functions!");  
-    let sum = add(5, 10);
-    println!("Sum: {}", sum);
-    human_id("John Elan", 30, 175.9);
+    println!("Working with ownership!");  
+    // ============================ cleaning the memory ============================
+    //  example each value in rust has a variable that's its owner 
 
-    // creating an expression which return the product of price and quantity
-    let x= {
-        let price = 5;
-        let quantity = 10;
-        price * quantity
-    };
-    println!("Total Price: {}", x);
+    let s1 = String::from("Rust");
+    let len = calculate_length (&s1);
+    println!("The length of '{}' is {}.", s1, len);
 
-    // calling the BMI function
-    let height_m = 1.75;  
-    let weight_kg = 70.0;  
-    let bmi = calculate_bmi(weight_kg, height_m);
-    println!("BMI: {:.2}", bmi);
+    // example of there can be only be one owner at a time means we send the ownership of s1 to s2
+    let s2 = s1; // s1 is moved to s2, s1 is no longer valid
+    println!("The length of '{}' is {}.", s2, len);
 }
 
 
+    // when the owner goes out of scope , the value will be dropped and the memory will be freed automatically
+    fn print_lost(s : &String){
+        // display an error 
+        // println!("{}",&s1)
+    }
 
-// functions that return a value
-fn add(a: i32, b: i32) -> i32 {
-    return a + b;
-}
-
-fn human_id(name: &str, age: u32, height: f32){
-    println!("Name: {}, Age: {}, Height: {} cm", name, age, height);
-}
-
-fn calculate_bmi(weight_kg: f32, height_m: f32) -> f32 {
-    weight_kg / (height_m * height_m)
+fn calculate_length(s: &String) -> usize {
+    s.len()
 }
