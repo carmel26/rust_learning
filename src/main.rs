@@ -1,33 +1,14 @@
 fn main() {
-  // work with structs
-let mut account = BankAccount{
-    owner : "Alice".to_string(),
-    balance : 1200.45,
-};
- 
- // immutable account check balance
-account.check_balance();
+  // work with shadowing variables
+//   means creating another variable from an existing variable with the same name
 
-// mutable borrow to withdraw money
-account.withdraw(230.1);
+  let x = 12; // first variable with 12
+  let x = x + 3; // second variable with 15
+  println!("x = {}", x);
+  {
+    let x = x * 2; //third variable with 30
+    println!(" the new value is = {}", x);
+  }
 
-// check balance again
-account.check_balance();
-
-}
-
-struct BankAccount {
-    owner : String,
-    balance : f64,
-}
-
-impl BankAccount{
-    fn withdraw(&mut self, amount: f64){
-        println!("Withdrawing {} from account owned by {}", amount, self.owner);
-        self.balance -= amount;
-    }
-
-    fn check_balance(&self){
-        println!("Account owned by  {} has a balance of {}", self.owner, self.balance);
-    }
+  println!("the value of x out of the block is = {}", x); // the value of x out of the block is 15
 }
