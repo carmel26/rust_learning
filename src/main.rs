@@ -1,48 +1,61 @@
 #![allow(warnings)]
+// structures are used to name and package related values similar to tuples but with more flexibility
+  // creating a book structure
+  struct Book {
+    title: String,
+    author: String,
+    number_of_pages: u32,
+    available: bool,
+  }
+
+  // creating a user structure
+  struct User {
+    active : bool,
+    username : String,
+    email : String,
+    sign_in_count : u64,
+  }
+
 fn main() {
-  // loops
-//   normals loops
-  let mut counter: i32 = 0;
-  let result = loop {
-    counter += 1;
-    if counter == 10 {
-        break counter * 2;
-    };
+  // advanced structures understandings
+  let rect  = (30, 50);
+  
+  let mut user1 : User = User {
+    active : true,
+    username : String::from("carmel1"),
+    email : String::from("carmelnkeshi@gmail.com"),
+    sign_in_count : 1,
   };
-  println!("The result is: {}", result);
-  // loops labels to disambiguate Between multiple loops
-  'counting_up: loop {
-    println!("count = {}", counter);
-    let mut remaining  = 10;
-    loop {
-        println!("remaining = {}", remaining);
-        if remaining == 9 {
-            break;
-        }
-        if counter == 2 {
-            break 'counting_up;
-        }
-        remaining -= 1;
-        counter -= 1;
-    }
-  }
 
-  // while loops
-  let mut number = 4;
-  while number != 0 {
-    println!("{}!", number);
-    number -= 1;
-  }
-  print!("HEYYYY!!!");
+//   changing the email of user1 using the object
+  user1.email = String::from("carmelnkeshi2@gmail.com");
+  println!("User email: {}", user1.email);
+  
+  let user2 : User = User {
+    email : String::from("mynewEmail@gmail.com"),
+    ..user1
+  };
+  println!("User email: {}", user2.email);
 
-  // for loops
-    let a = [10, 20, 30, 40, 50, 32,23];
-    for element in a {
-        println!("the value is: {element}");
-    }
+  // creating a tuples struct
+  struct Color(i32, i32, i32);
+  struct Point(i32, i32);   
 
-    let text = "Mwiriwe neza ga basha?";
-    for word in text.split_whitespace() {
-        println!("{word}");
-    }
+  let black = Color(0, 0, 0);
+  let white = Color(255, 255, 255);
+
+  // unit-like struct
+  struct AlwaysEqual;
+  let subject: AlwaysEqual = AlwaysEqual;
+
+
 }
+
+fn build_user(email: String, username:String) -> User {
+    User {
+      active : true,
+      username,
+      email,
+      sign_in_count : 1,
+    }
+  }
