@@ -1,14 +1,16 @@
+#![allow(warnings)]
 fn main() {
-  // work with shadowing variables
-//   means creating another variable from an existing variable with the same name
+  // control flow
+  let age: u32 = 18;
+  let is_adult: bool = if age >= 18 {true} else {false}; 
 
-  let x = 12; // first variable with 12
-  let x = x + 3; // second variable with 15
-  println!("x = {}", x);
-  {
-    let x = x * 2; //third variable with 30
-    println!(" the new value is = {}", x);
-  }
+    if is_adult{
+        println!("You are an adult.");
+    }else{
+        println!("You are not an adult.");
+    }
 
-  println!("the value of x out of the block is = {}", x); // the value of x out of the block is 15
+    // initialize a variable with control flow
+    let number = if is_adult{23} else {9};
+    println!("The number is: {}", number);
 }
