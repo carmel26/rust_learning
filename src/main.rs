@@ -1,37 +1,47 @@
 #![allow(warnings)]
 
-use std::net::IpAddr;
+// let's work with Option T
+// enum OPTION<T> {
+//   // Defining the generic option Type
+//   Some(T), // represents a value
+//   None, // represents the absence of a value
+// }
 
-// enum type variables
-// definition of the enum type
-enum IpAddressKind {
-    V4(String), 
-    V6(String)
-}
+// enum Result<T, E> {
+//   // Defining the generic result Type
+//   Ok(T), // represents a successful value
+//   Err(E), // represents an error value
+// }
 
-struct ipAddress {
-    kind : IpAddressKind,
-    address : String,
-}
 fn main() {
-  // enum examples
-  let four : IpAddressKind = IpAddressKind::V4(String::from("127.0.0.1"));
-  let six : IpAddressKind = IpAddressKind::V6(String::from("::1"));
+    println!("Option hundling!");
+    let result = divide(10.0, 2.0);
+    match result {
+        Some(value) => println!("Result = {}", value),
+        None => println!("Error: Division by zero"),
+    }
 
-  route(four);
-  route(six);
-
-  let home : ipAddress = ipAddress {
-    kind : IpAddressKind::V4(String::from("127.0.0.1")),
-    address : String::from("127.0.0.1"),
-  };
-
-  let loopBack : ipAddress = ipAddress {
-    kind : IpAddressKind::V6(String::from("::1")),
-    address : String::from("::1"),
-  };
+    println!("Result hundling!");
+    let result2: Result<f64, String> = second_divide(32.32, 10.02);
+    match result2 {
+        Ok(value) => println!("Second result = {}", value),
+        Err(error) => println!("Error: {}", error),
+    }
 }
 
-fn route(ip_kind: IpAddressKind) {
-  // function body  
+// using option type
+fn divide (numerator: f64, denominator: f64) ->Option<f64>{
+  if denominator == 0.0 {
+    None
+  } else {
+    Some(numerator / denominator)
+  }
+}
+
+fn second_divide(numerator: f64, denominator: f64) -> Result<f64, String> {
+    if denominator == 0.0 {
+        Err("Error: Division by zero".to_string())
+    } else {
+        Ok(numerator / denominator)
+    }
 }
