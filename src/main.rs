@@ -1,34 +1,26 @@
 #![allow(warnings)]
 
-// working with vectors
+// working with UTF-8 encoded strings
 
 fn main() {
-  // defining an empty vector
-   let mut vector: Vec<i32> = Vec::new();
+  // 1
+  let s = "Whatever data we have".to_string();
+// 2
+  let s : String = String::from("Whatever too, world!");
+// mutate the variable [push to end of the string]
+  let mut s = String::from("Foo"); 
+  s.push_str(" bar");
 
-   vector.push(12);
-   vector.push(23);
-   vector.push(1);
-   vector.push(4);
-   vector.push(5);
+  //for one character
+  s.push('!');
 
-   println!("The first vector is {:?}", vector);
+  println!("the value of S is = {}", s);
 
-   // defining a vector with values
-   let theVec : Vec<i32> = vec![12, 23, 34, 12, 32, 43, 32];
+  // to combine two strings, we can use the + operator
+  let s1 = String::from("Hello, ");
+  let s2 = String::from("world!");
+  let s3 = s1 + &s2; // note s1 has been moved
 
-   //by reference
-   let the_second_element : &i32 = &theVec[1];
-   println!("The second element of the second vector is {}", the_second_element);
-
-   // by value
-   let third_element = theVec[2];
-   println!("The third element of the second vector is {}", third_element);
-
-   //USING Get metho
-    match theVec.get(3) {
-        Some(third_element) => println!("The fourth element of the second vector is {}", third_element),
-        None => println!("There is no fourth element in the second vector"),
-    }
+  println!("the value of S3 is = {}", s3);
 
 }
