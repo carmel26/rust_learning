@@ -1,26 +1,21 @@
 #![allow(warnings)]
 
-// working with UTF-8 encoded strings
+use std::collections::HashMap;
+// working with Hash Map 
 
 fn main() {
-  // 1
-  let s = "Whatever data we have".to_string();
-// 2
-  let s : String = String::from("Whatever too, world!");
-// mutate the variable [push to end of the string]
-  let mut s = String::from("Foo"); 
-  s.push_str(" bar");
+    let hello = "Здравствуйте"; // "Hello" in Russian
+    println!("{}", hello);
 
-  //for one character
-  s.push('!');
+    let mut scores = HashMap::new();
+    scores.insert(String::from("Alice"), 95);
+    scores.insert(String::from("Bob"), 87);
+    scores.insert(String::from("Charlie"), 92);
 
-  println!("the value of S is = {}", s);
+    let team_name = String::from("Bob");
+    let score = scores.get(&team_name).copied().unwrap_or(0);
 
-  // to combine two strings, we can use the + operator
-  let s1 = String::from("Hello, ");
-  let s2 = String::from("world!");
-  let s3 = s1 + &s2; // note s1 has been moved
-
-  println!("the value of S3 is = {}", s3);
-
+    for (key, value) in &scores {
+        println!("{key}: {value}");
+    }
 }
